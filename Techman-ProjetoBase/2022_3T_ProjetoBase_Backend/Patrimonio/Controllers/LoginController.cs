@@ -45,6 +45,7 @@ namespace Patrimonio.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {
+
             try
             {
                 Usuario usuarioBuscado = _usuarioRepository.Login(login.Email, login.Senha);
@@ -65,15 +66,15 @@ namespace Patrimonio.Controllers
 
                 var minhasClaims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.Id.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioBuscado.IdPerfils.ToString()),
+                        new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
+                        new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.Id.ToString()),
+                        new Claim(ClaimTypes.Role, usuarioBuscado.IdPerfils.ToString()),
 
-                    // armazena na Claim personalizada role o tipo de usuário que está logado
-                    new Claim("role", usuarioBuscado.IdPerfils.ToString()),
+                        // armazena na Claim personalizada role o tipo de usuário que está logado
+                        new Claim("role", usuarioBuscado.IdPerfils.ToString()),
 
-                    // Armazena na Claim o nome do usuário que foi autenticado
-                   // new Claim(JwtRegisteredClaimNames.Name, usuarioBuscado.NomeUsuario)
+                        // Armazena na Claim o nome do usuário que foi autenticado
+                       // new Claim(JwtRegisteredClaimNames.Name, usuarioBuscado.NomeUsuario)
 
 
                 };

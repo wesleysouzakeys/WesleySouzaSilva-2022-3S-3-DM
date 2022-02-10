@@ -9,5 +9,6 @@ namespace Patrimonio.Interfaces
     public interface IUsuarioRepository
     {
         Usuario Login(string email, string senha);
+        void AtualizarCripto(Usuario usuarioBuscado, int id);
     }
 }
